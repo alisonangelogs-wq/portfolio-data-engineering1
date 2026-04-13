@@ -99,7 +99,7 @@ Runs daily to simulate a production environment.
 
 Running the Project with Docker
 Clone the repository
-git clone https://github.com/your-user/portfolio-data-engineering.git
+git clone https://github.com/your-user/portfolio-data-engineering1.git
 cd portfolio-data-engineering
 Start the containers
 docker-compose up -d
