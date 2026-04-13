@@ -43,21 +43,21 @@ Git & GitHub	Version control
 Project Structure
 
 employee_pipeline/
-│
-├── dags/
-│   └── employee_pipeline_dag.py
-│
-├── data/
-│   └── employee_times.csv
-│
-├── scripts/
-│   ├── extract.py
-│   ├── transform.py
-│   └── load.py
-│
-├── docker-compose.yml
-├── requirements.txt
-└── README.md
+
+dags/ 
+employee_pipeline_dag.py
+
+data/ 
+employee_times.csv
+
+scripts/ 
+extract.py
+transform.py
+load.py
+
+docker-compose.yml
+requirements.txt
+README.md
 
 Data Model
 
