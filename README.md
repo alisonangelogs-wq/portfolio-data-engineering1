@@ -1,147 +1,155 @@
-﻿Employee Time Tracking Data Pipeline
+Pipeline de Dados de Controle de Jornada de Funcionários
 
-End-to-end Data Engineering pipeline designed to collect, process, store and orchestrate employee time tracking data.
+Pipeline completo de Engenharia de Dados (end-to-end) desenvolvido para coletar, processar, armazenar e orquestrar dados de controle de ponto de funcionários.
 
-This project simulates a real production-like data workflow using Docker, Apache Airflow, Python and SQL.
+Este projeto simula um fluxo de dados semelhante a um ambiente de produção, utilizando Docker, Apache Airflow, Python e SQL.
 
-Project Goal
+Objetivo do Projeto
 
-Build a complete data pipeline capable of:
+Construir uma pipeline de dados capaz de:
+Coletar registros de jornada de trabalho
+Processar e validar dados brutos
+Carregar dados tratados em um banco SQL
+Automatizar todo o fluxo com Apache Airflow
+Demonstrar habilidades reais de Engenharia de Dados em um projeto de portfólio
+Este projeto reproduz um cenário real de ETL (Extract, Transform, Load).
 
-Collecting employee work time records
-Processing and validating the data
-Loading into a SQL database
-Automating the workflow with Airflow
-Demonstrating real Data Engineering skills for portfolio purposes
+Arquitetura da Pipeline
 
-This project reproduces a real-world data engineering scenario.
+Fluxo de dados:
 
-Pipeline Architecture
-
-Data flow:
-
-Data source (CSV / simulated generator)
+Fonte de dados (CSV / Gerador simulado)
         ↓
-Python ingestion scripts
+Scripts Python de ingestão
         ↓
-Data transformation & validation
+Transformação e validação dos dados
         ↓
-Load into SQLite database
+Banco de dados SQLite
         ↓
-Airflow orchestration (DAG)
+Orquestração com Apache Airflow (DAG)
 
-Tech Stack
+Tecnologias Utilizadas
 
-Technology	Purpose
-Python	ETL scripts
-Apache Airflow	Workflow orchestration
-Docker	Containerized environment
-SQLite	Database
-Pandas	Data transformation
-Git & GitHub	Version control
+Tecnologia
+Finalidade
+Python
+Scripts ETL
+Apache Airflow
+Orquestração de workflows
+Docker
+Ambiente containerizado
+SQLite
+Banco de dados relacional
+Pandas
+Transformação de dados
+Git & GitHub
+Versionamento de código
 
-Project Structure
+Estrutura do Projeto
 
 employee_pipeline/
+│
+├── dags/
+│   └── employee_pipeline_dag.py
+│
+├── data/
+│   └── employee_times.csv
+│
+├── scripts/
+│   ├── extract.py
+│   ├── transform.py
+│   └── load.py
+│
+├── docker-compose.yml
+├── requirements.txt
+└── README.md
 
-dags/ 
-employee_pipeline_dag.py
+Modelo de Dados
 
-data/ 
-employee_times.csv
+Cada registro contém as seguintes colunas:
+Coluna
+Descrição
+employee_id
+Identificador do funcionário
+check_in
+Horário de entrada
+lunch_out
+Saída para almoço
+lunch_in
+Retorno do almoço
+check_out
+Horário de saída
+work_hours
+Horas trabalhadas (calculadas)
 
-scripts/ 
-extract.py
-transform.py
-load.py
+Pipeline ETL
 
-docker-compose.yml
-requirements.txt
-README.md
+-Extração (Extract)
+Simula a geração de dados de controle de ponto por meio de arquivo CSV ou script Python.
+-Transformação (Transform)
+Processamentos realizados:
+Conversão e padronização de datas e horários
+Validação da qualidade dos dados
+Cálculo automático das horas trabalhadas
+Tratamento de registros inconsistentes ou incompletos
+-Carga (Load)
+Carregamento dos dados tratados no banco de dados SQLite.
 
-Data Model
+Orquestração com Apache Airflow
 
-Each record contains:
+A DAG executa automaticamente as etapas:
+Extração
+Transformação
+Carga
+A execução ocorre diariamente, simulando um ambiente de produção.
 
-Column	Description
-employee_id	Employee ID
-check_in	Work start time
-lunch_out	Lunch break start
-lunch_in	Lunch break end
-check_out	Work end time
-work_hours	Calculated worked hours
-ETL Pipeline
-Extract
+Como Executar o Projeto com Docker
 
-Simulates employee time tracking data generation.
-
-Transform
-
-Data processing includes:
-
-Datetime parsing
-Data validation
-Work hours calculation
-Handling inconsistent records
-Load
-
-Loads the processed dataset into SQLite database.
-
-Airflow Orchestration
-
-The DAG automatically runs:
-
-Data extraction
-Data transformation
-Data loading
-
-Runs daily to simulate a production environment.
-
-Running the Project with Docker
-Clone the repository
+1-Clonar o repositório
+Bash
 git clone https://github.com/your-user/portfolio-data-engineering1.git
 cd portfolio-data-engineering
-Start the containers
-docker-compose up -d
-Access Airflow UI
 
-Open in your browser:
+2-Subir os containers
+Bash
+docker-compose up -d
+
+3-Acessar a interface do Airflow
+Abra no navegador:
 
 http://localhost:8080
+Credenciais padrão:
+Usuário: airflow
+Senha: airflow
 
-Default credentials:
+4-Executar a DAG
+Abra a interface do Airflow
+Localize a DAG employee_pipeline
+Ative a DAG
+Clique em Trigger DAG
 
-user: airflow
-password: airflow
-Trigger the DAG
-Open Airflow UI
-Find: employee_pipeline
-Enable the DAG
-Click Trigger DAG
-Future Improvements
-Replace SQLite with PostgreSQL
-Build a Data Warehouse layer
-Add automated tests
-Deploy to cloud (AWS / GCP / Azure)
-Create dashboards (Power BI / Metabase)
-Add API ingestion
-Skills Demonstrated
+Melhorias Futuras
 
-This project showcases:
+Substituir SQLite por PostgreSQL
+Criar camada de Data Warehouse
+Adicionar testes automatizados
+Fazer deploy em nuvem (AWS / GCP / Azure)
+Criar dashboards (Power BI / Metabase)
+Implementar ingestão via API
 
-Data Engineering fundamentals
-ETL pipeline development
-Docker & containerization
-Airflow orchestration
-Git version control
-Data modeling
-Workflow automation
+Habilidades Demonstradas
 
-Author
+Desenvolvimento de pipelines ETL end-to-end
+Orquestração de workflows com Airflow
+Containerização com Docker
+Modelagem e validação de dados
+Automação de pipelines de dados
+
+Autor
 
 Alison Angelo Gomes da Silva
-Physics & Biology Teacher transitioning into Data Engineering
+Professor de Física e Biologia em transição para Engenharia de Dados
 
-Purpose
+Propósito
 
-Project developed as part of a professional Data Engineering portfolio.
+Projeto desenvolvido como parte de um portfólio profissional de Engenharia de Dados.
