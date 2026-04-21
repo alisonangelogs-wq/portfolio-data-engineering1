@@ -1,155 +1,145 @@
-Pipeline de Dados de Controle de Jornada de Funcionários
+# Data Engineering Portfolio – ETL Pipeline with Apache Airflow
 
-Pipeline completo de Engenharia de Dados (end-to-end) desenvolvido para coletar, processar, armazenar e orquestrar dados de controle de ponto de funcionários.
+## Overview
 
-Este projeto simula um fluxo de dados semelhante a um ambiente de produção, utilizando Docker, Apache Airflow, Python e SQL.
+This project implements an end-to-end Data Engineering ETL pipeline orchestrated with Apache Airflow and containerized using Docker.
 
-Objetivo do Projeto
+The pipeline automates the process of extracting data from a source, transforming and cleaning the data using Python, and loading the processed data into a target storage system.
 
-Construir uma pipeline de dados capaz de:
-Coletar registros de jornada de trabalho
-Processar e validar dados brutos
-Carregar dados tratados em um banco SQL
-Automatizar todo o fluxo com Apache Airflow
-Demonstrar habilidades reais de Engenharia de Dados em um projeto de portfólio
-Este projeto reproduz um cenário real de ETL (Extract, Transform, Load).
+The goal of this project is to simulate a real-world data engineering workflow, demonstrating skills in data orchestration, pipeline design, and containerized environments.
 
-Arquitetura da Pipeline
+---
 
-Fluxo de dados:
+## Architecture
 
-Fonte de dados (CSV / Gerador simulado)
-        ↓
-Scripts Python de ingestão
-        ↓
-Transformação e validação dos dados
-        ↓
-Banco de dados SQLite
-        ↓
-Orquestração com Apache Airflow (DAG)
+The pipeline follows the ETL (Extract, Transform, Load) pattern:
 
-Tecnologias Utilizadas
+Data Source → Extract → Transform → Load → Output Storage
 
-Tecnologia
-Finalidade
-Python
-Scripts ETL
-Apache Airflow
-Orquestração de workflows
-Docker
-Ambiente containerizado
-SQLite
-Banco de dados relacional
-Pandas
-Transformação de dados
-Git & GitHub
-Versionamento de código
+Orchestration is handled by Apache Airflow running inside Docker containers.
 
-Estrutura do Projeto
+---
 
-employee_pipeline/
+## Technologies Used
+
+- Apache Airflow  
+- Python (Pandas)  
+- Docker & Docker Compose  
+- PostgreSQL or SQLite  
+- Git & GitHub  
+
+---
+
+## Project Structure
+
+portfolio-data-engineering/
 │
-├── dags/
-│   └── employee_pipeline_dag.py
-│
-├── data/
-│   └── employee_times.csv
-│
-├── scripts/
-│   ├── extract.py
-│   ├── transform.py
-│   └── load.py
-│
-├── docker-compose.yml
-├── requirements.txt
-└── README.md
+├── dags/                  Airflow DAG definitions  
+├── scripts/               ETL logic (extract, transform, load)  
+├── data/                  Input and output data files (if applicable)  
+├── docker-compose.yml    Airflow environment setup  
+├── requirements.txt      Python dependencies  
+└── README.md             Project documentation  
 
-Modelo de Dados
+---
 
-Cada registro contém as seguintes colunas:
-Coluna
-Descrição
-employee_id
-Identificador do funcionário
-check_in
-Horário de entrada
-lunch_out
-Saída para almoço
-lunch_in
-Retorno do almoço
-check_out
-Horário de saída
-work_hours
-Horas trabalhadas (calculadas)
+## How to Run the Project
 
-Pipeline ETL
+### 1. Clone the repository
 
--Extração (Extract)
-Simula a geração de dados de controle de ponto por meio de arquivo CSV ou script Python.
--Transformação (Transform)
-Processamentos realizados:
-Conversão e padronização de datas e horários
-Validação da qualidade dos dados
-Cálculo automático das horas trabalhadas
-Tratamento de registros inconsistentes ou incompletos
--Carga (Load)
-Carregamento dos dados tratados no banco de dados SQLite.
+git clone https://github.com/alisonangelogs-wq/portfolio-data-engineering1.git  
+cd portfolio-data-engineering1  
 
-Orquestração com Apache Airflow
+---
 
-A DAG executa automaticamente as etapas:
-Extração
-Transformação
-Carga
-A execução ocorre diariamente, simulando um ambiente de produção.
+### 2. Start Docker environment
 
-Como Executar o Projeto com Docker
+Make sure Docker Desktop is running, then execute:
 
-1-Clonar o repositório
-Bash
-git clone https://github.com/your-user/portfolio-data-engineering1.git
-cd portfolio-data-engineering
+docker compose up -d  
 
-2-Subir os containers
-Bash
-docker-compose up -d
+---
 
-3-Acessar a interface do Airflow
-Abra no navegador:
+### 3. Access Apache Airflow
 
-http://localhost:8080
-Credenciais padrão:
-Usuário: airflow
-Senha: airflow
+Open your browser:
 
-4-Executar a DAG
-Abra a interface do Airflow
-Localize a DAG employee_pipeline
-Ative a DAG
-Clique em Trigger DAG
+http://localhost:8080  
 
-Melhorias Futuras
+Default credentials:
 
-Substituir SQLite por PostgreSQL
-Criar camada de Data Warehouse
-Adicionar testes automatizados
-Fazer deploy em nuvem (AWS / GCP / Azure)
-Criar dashboards (Power BI / Metabase)
-Implementar ingestão via API
+Username: airflow  
+Password: airflow  
 
-Habilidades Demonstradas
+---
 
-Desenvolvimento de pipelines ETL end-to-end
-Orquestração de workflows com Airflow
-Containerização com Docker
-Modelagem e validação de dados
-Automação de pipelines de dados
+## Pipeline Workflow
 
-Autor
+Extract  
+Data is collected from a source (CSV, API, or simulated dataset).
 
-Alison Angelo Gomes da Silva
-Professor de Física e Biologia em transição para Engenharia de Dados
+Transform  
+Data is cleaned and processed using Python (Pandas), including handling missing values, formatting, and normalization.
 
-Propósito
+Load  
+The transformed data is stored in a database or file system.
 
-Projeto desenvolvido como parte de um portfólio profissional de Engenharia de Dados.
+All steps are orchestrated using Apache Airflow DAGs.
+
+---
+
+## Airflow DAG Structure
+
+The pipeline is executed in sequential tasks:
+
+- extract_task  
+- transform_task  
+- load_task  
+
+Dependencies are managed by Airflow to ensure correct execution order.
+
+---
+
+## Key Features
+
+- End-to-end ETL pipeline  
+- Workflow orchestration with Apache Airflow  
+- Containerized environment with Docker  
+- Modular Python scripts  
+- Scalable and production-style structure  
+
+---
+
+## How Recruiters Should Evaluate This Project
+
+This project should be evaluated based on the following criteria:
+
+- Understanding of ETL pipeline architecture  
+- Ability to orchestrate workflows using Apache Airflow  
+- Code modularization and maintainability  
+- Use of Docker for environment consistency  
+- Data processing with Python (Pandas)  
+- Awareness of real-world data engineering practices  
+
+---
+
+## Future Improvements
+
+- Integration with cloud storage (AWS S3 or GCP)  
+- Use of real-time APIs as data source  
+- Data quality validation layer  
+- Monitoring and alerting system (email or Slack)  
+- CI/CD pipeline for automated deployment  
+
+---
+
+## Author
+
+Alison Angelo Gomes da Silva  
+Data Engineer in development | Background in Systems Analysis and Development (ADS)
+
+---
+
+## Final Notes
+
+This project demonstrates practical skills in data pipeline development, workflow orchestration with Apache Airflow, containerization using Docker, Python data processing, and modern data engineering practices.
