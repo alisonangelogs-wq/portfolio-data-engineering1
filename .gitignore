@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Ambientes virtuais
+.venv/
+venv/
+env/
+
+# Airflow
+logs/
+airflow/logs/
+airflow/*.db
+airflow/*.db-*
+
+# Configurações locais
+.env
+
+# Editor
+.vscode/
+.idea/
+
+# Generated SQLite database
+project1_employee_pipeline/database/company.db

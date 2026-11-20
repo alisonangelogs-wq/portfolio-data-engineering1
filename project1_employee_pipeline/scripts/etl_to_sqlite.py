@@ -1,5 +1,6 @@
 import pandas as pd
 import sqlite3
+import os
 
 # caminho dos arquivos
 CSV_PATH = "data/employee_times.csv"
@@ -17,6 +18,7 @@ df["lunch_out"] = pd.to_datetime(df["lunch_out"], format='%H:%M:%S').dt.time
 df["lunch_in"] = pd.to_datetime(df["lunch_in"], format='%H:%M:%S').dt.time
 df["check_out"] = pd.to_datetime(df["check_out"], format='%H:%M:%S').dt.time
 
+os.makedirs("database", exist_ok=True)
 print("Conectando ao banco SQLite...")
 conn = sqlite3.connect(DB_PATH)
 
