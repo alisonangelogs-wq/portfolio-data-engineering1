@@ -23,7 +23,7 @@ print("Conectando ao banco SQLite...")
 conn = sqlite3.connect(DB_PATH)
 
 print("Criando tabela e inserindo dados...")
-df.to_sql("employee_times", conn, if_exists="replace", index=False)
+df.to_sql("employee_times_staging", conn, if_exists="replace", index=False)
 
 conn.close()
 

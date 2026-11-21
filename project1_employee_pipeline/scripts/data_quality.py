@@ -14,7 +14,7 @@ conn = sqlite3.connect(DB_PATH)
 
 # Consultar os registros
 df = pd.read_sql_query(
-    "SELECT * FROM employee_times",
+    "SELECT * FROM employee_times_staging",
     conn
 )
 

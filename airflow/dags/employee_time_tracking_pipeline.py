@@ -11,7 +11,7 @@ PROJECT_DIR = Path("/opt/airflow/employee_pipeline")
 
 @dag(
     dag_id="employee_time_tracking_pipeline",
-    description="Pipeline ETL com validacao de qualidade e analises SQL",
+    description="Pipeline ETL com staging, qualidade de dados e analises SQL",
     schedule=None,
     start_date=pendulum.datetime(2026, 1, 1, tz="UTC"),
     catchup=False,
@@ -46,6 +46,19 @@ def employee_time_tracking_pipeline():
         )
 
     @task
+    def promover_dados():
+        script = PROJECT_DIR / "scripts" / "promote_to_production.py"
+
+        if not script.exists():
+            raise FileNotFoundError(f"Script nao encontrado: {script}")
+
+        subprocess.run(
+            [sys.executable, str(script)],
+            cwd=str(PROJECT_DIR),
+            check=True,
+        )
+
+    @task
     def executar_analises():
         script = PROJECT_DIR / "scripts" / "analytics_queries.py"
 
@@ -60,9 +73,10 @@ def employee_time_tracking_pipeline():
 
     etl = executar_etl()
     qualidade = validar_qualidade()
+    promocao = promover_dados()
     analises = executar_analises()
 
-    etl >> qualidade >> analises
+    etl >> qualidade >> promocao >> analises
 
 
 employee_time_tracking_pipeline()
