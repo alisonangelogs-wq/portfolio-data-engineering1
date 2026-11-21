@@ -23,3 +23,6 @@ airflow/*.db-*
 
 # Generated SQLite database
 project1_employee_pipeline/database/company.db
+
+# Logs do ambiente Airflow de teste
+airflow/logs-test/
